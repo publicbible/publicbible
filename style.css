@@ -1,0 +1,131 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  font-family: system-ui;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+body * {
+  background: inherit;
+  color: inherit;
+}
+
+.bg-dark {
+  background: #333;
+  color: #998;
+  border-color: #998;
+}
+
+.bg-black {
+  background: black;
+  color: #776;
+  border-color: #776;
+}
+
+.small {
+  font-size: 0.8em;
+}
+
+.d-block {
+  display: block;
+}
+
+.btn, .w3-btn {
+  border: 1px solid #887;
+  padding: 0.5em 0.75em;;
+}
+
+.d-none {
+  display: none;
+}
+
+input,
+.w3-input {
+  border: 1px solid #887;
+}
+
+.copy-button {
+  bottom: 0px;
+  z-index: 9;
+}
+
+.p-1 {
+  padding: 0.5em;
+}
+
+.ml-1 {
+  margin-left: 0.5em;
+}
+
+.mb-5 {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.pb-5 {
+  display: block;
+  padding-bottom: 5px;
+}
+
+.mb-1 {
+  margin-bottom: 1em;
+}
+
+.mb-2 {
+  margin-bottom: 2em;
+}
+
+.pb-2 {
+  padding-bottom: 2em;
+}
+
+.full {
+  width: 100%;
+  position: relative;
+}
+
+.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  padding-top: 0.5em;
+  padding-bottom: 1.5em;
+  background: #111;
+}
+
+.fixed-footer .footer-inputs {
+  padding: 5px 0px;
+  text-align: center;
+}
+
+#book-selector {
+  margin-bottom: 100px;
+}
+
+h4 {
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 1px solid;
+}
+
+.result-verse {
+  margin-bottom: 1em;
+  padding: 0.5em;
+  border: 1px solid #332;
+  background: #111;
+}
+
+.passage-title {
+  padding: 0.5em;
+  background: #222;
+  margin-bottom: 0.25em;
+}

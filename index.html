@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Bible Reader</title>
+  <link rel='manifest' href='manifest.json'>
+  <link rel="stylesheet" href="w3.css">
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="images/icon.png">
+  <link rel="icon" type="image/png" sizes="any" href="images/icon.png">
+
+</head>
+
+<body class="bg-black">
+  <header class="w3-container">
+    <!-- <a href="passages.html"><h3 class="w3-right">Passages</h3></a> -->
+    <h3 class="w3-left">Bible Reader</h3>
+  </header>
+  <div class="w3-container" id="passage-selector">
+    <div class="full">
+      <form action="">
+        <input name="search" type="text" placeholder="Search" class="mb-5 w3-input">
+      </form>
+    </div>
+    <div class="full d-block" id="display-search-results">
+      <div class="w3-row search-header full">
+        <span class="small w3-col-3">Results:</span>
+        <span class="small w3-col-3 w3-right" onclick="w3.hide('#display-search-results')">Close</span>
+      </div>
+      <br>
+      <a w3-repeat="searchResults" href="?book={{book}}&chapter={{chapter}}&v_start={{verse}}">
+        <p class="result-verse" id="{{passage}}">
+          <b>{{book}} {{chapter}}:{{verse}}</b> - {{text}}
+        </p>
+      </a>
+    </div>
+    <div class="full d-block" id="display-passage">
+      <textarea class="mb-5 w3-input" rows="10" id="display-quote">{{passage}}</textarea>
+      <div class="full small">
+        <span onclick="copyText('display-quote')" class="w3-btn ">Copy text</span>
+        <span onclick="listen('display-quote')" class="w3-btn ">Hear Text</span>
+        <a href="?book={{book}}&chapter={{chapter}}&v_start={{v_prev}}&v_end={{v_end}}" class="w3-btn">&lt; +</a>
+        <a href="?book={{book}}&chapter={{chapter}}&v_start={{v_start}}&v_end={{v_next}}" class="w3-btn"> + &gt;</a>
+      </div>
+    </div>
+    <hr>
+    <form>
+      <div class="full d-block">
+        <h3>Books</h3>
+        <div id="book-selector" class="w3-row">
+          <div class="w3-col s6">
+            <div w3-repeat="ot">
+              <input name="book" type="radio" id="{{name}}" value="{{name}}"> <label for="{{name}}"
+                class="small">{{name}}</label>
+            </div>
+          </div>
+          <div class="w3-col s6">
+            <div w3-repeat="nt">
+              <input name="book" type="radio" id="{{name}}" value="{{name}}"> <label for="{{name}}"
+                class="small">{{name}}</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="fixed-footer bg-black">
+          <div class="footer-inputs ">
+            Ch: <input type="number" style="width: 60px" class="p-1" required name="chapter"> Vs: <input class="p-1"
+              type="number" style="width: 60px" required name="v_start"> <input class="p-1" style="width: 60px"
+              type="number" name="v_end"> <input class="btn ml-1 p-1" type="submit">
+          </div>
+        </div>
+    </form>
+
+  </div>
+
+
+  <script src="w3.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

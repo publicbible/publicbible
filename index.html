@@ -13,34 +13,34 @@
   <link rel="icon" type="image/png" sizes="any" href="images/icon.png">
 </head>
 
-<body class=" bg-dark bg-gradient text-light">
-  <header class="container mb-auto">
-    <div>
-      <a href="index.html"><h1 class="text-center p-2">Public Bible</h1></a>
+<body class="">
+  <header class="container mb-3 border-bottom border-secondary">
+    <div class="clearfix">
+      <h1 class="float-start my-2">Public Bible</h1>
+      <a href="index.html"><span class="float-end">Home</span></a>
     </div>
     <!-- <a href="passages.html"><h3 class="right">Passages</h3></a> -->
   </header>
   <main class="container" id="passage-selector">
     <div class="">
       <form class="">
-        <input name="search" type="text" placeholder="Search" class="p-1 col-12">
+        <input name="search" id="search-field" type="text" placeholder="Search" class="p-1 col-12">
       </form>
     </div>
     <div class="" id="display-search-results">
-      <div class=" search-header">
-        <span class="small col-3">Results:</span>
-        <span class="small col-3 float-right" onclick="w3.hide('#display-search-results')">Close</span>
+      <div class="clearfix search-header my-3">
+        <h3 class="float-start">Results</h3>
+        <span class="btn-sm btn-warning float-end" onclick="w3.hide('#display-search-results')">Close</span>
       </div>
-      <br>
-      <a class="text-light " w3-repeat="searchResults" href="?book={{book}}&chapter={{chapter}}&v_start={{verse}}">
-        <span class="d-block bg-secondary my-2 p-2" id="{{passage}}">
+      <a class="" w3-repeat="searchResults" href="?book={{book}}&chapter={{chapter}}&v_start={{verse}}">
+        <span class="text-secondary border border-dark mb-3 d-block p-2" id="{{passage}}">
           <b>{{book}} {{chapter}}:{{verse}}</b> - {{text}}
         </span>
       </a>
     </div>
     <div class="" id="display-passage">
       <!-- <textarea class="" rows="10" id="display-quote-textarea">{{passageTextarea}}</textarea> -->
-      <div id="display-quote" class="bg-secondary my-2 p-2">{{passage}}</div>
+      <div id="display-quote" class="bg-dark my-3 p-3">{{passage}}</div>
       <div class="clearfix">
         <div class="float-start">
           <!-- <span onclick="copyText('display-quote-textarea')" class="btn btn-primary">Copy text</span> -->
@@ -59,18 +59,20 @@
     <hr>
     <form>
       <div class="full d-block">
-        <h3>Books</h3>
+        <h3>Verse Finder</h3>
+        <small>Select book, and enter the chapter and verse(s) at the bottom.</small>
+        <hr>
         <div id="book-selector" class="row">
           <div class="col s6">
-            <div w3-repeat="ot">
-              <input name="book" type="radio" id="{{name}}" value="{{name}}"> <label for="{{name}}"
-                class="small">{{name}}</label>
+            <div w3-repeat="ot" class="book-name mb-1">
+              <input class="" name="book" type="radio" id="{{name}}" value="{{name}}"> <label for="{{name}}"
+                class="">{{name}}</label>
             </div>
           </div>
           <div class="col s6">
-            <div w3-repeat="nt">
-              <input name="book" type="radio" id="{{name}}" value="{{name}}"> <label for="{{name}}"
-                class="small">{{name}}</label>
+            <div w3-repeat="nt" class="book-name mb-1">
+              <input class="" name="book" type="radio" id="{{name}}" value="{{name}}"> <label for="{{name}}"
+                class="">{{name}}</label>
             </div>
           </div>
         </div>

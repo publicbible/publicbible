@@ -89,7 +89,6 @@ function myFunction(myObject) {
   }
 
   if (selected.search) {
-    w3.show("#display-search-results");
     searchTerm = decodeURI(selected.search.replaceAll("+", " ")).toLowerCase();
     var result = [];
     var results = [];
@@ -109,6 +108,8 @@ function myFunction(myObject) {
         }
       }
     }
+    document.getElementById("search-field").value = searchTerm;
+    if(results.length > 0) w3.show("#display-search-results");
     myObject.searchResults = results;
   }
 

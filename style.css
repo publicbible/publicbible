@@ -1,4 +1,4 @@
-html {
+/* html {
   box-sizing: border-box;
 }
 
@@ -15,18 +15,6 @@ html {
 body * {
   background: inherit;
   color: inherit;
-}
-
-.bg-dark {
-  background: #333;
-  color: #998;
-  border-color: #998;
-}
-
-.bg-black {
-  background: black;
-  color: #776;
-  border-color: #776;
 }
 
 .small {
@@ -89,6 +77,10 @@ input,
 .full {
   width: 100%;
   position: relative;
+} */
+
+a{
+  text-decoration: none;
 }
 
 .fixed-footer {
@@ -109,12 +101,6 @@ input,
 
 #book-selector {
   margin-bottom: 100px;
-}
-
-h4 {
-  font-size: 20px;
-  font-weight: bold;
-  border-bottom: 1px solid;
 }
 
 .result-verse {

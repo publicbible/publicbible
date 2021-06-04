@@ -74,13 +74,14 @@ function myFunction(myObject) {
           }
         }
 
-        myObject.book = selected.book,
-        myObject.chapter = selected.chapter,
-        myObject.v_prev = selected.v_start == 1 ? selected.v_start : selected.v_start - 1,
-        myObject.v_start = selected.v_start,
-        myObject.v_end = selected.v_end,
-        myObject.v_next = parseInt(selected.v_end) + 1,
-        myObject.passage = ">**" + indicator + "** - " + passage;
+        myObject.book = selected.book;
+        myObject.chapter = selected.chapter;
+        myObject.v_prev = selected.v_start == 1 ? selected.v_start : selected.v_start - 1;
+        myObject.v_start = selected.v_start;
+        myObject.v_end = selected.v_end;
+        myObject.v_next = parseInt(selected.v_end) + 1;
+        myObject.passageTextarea = ">**" + indicator + "** - " + passage;
+        myObject.passage = "<b>" + indicator + "</b> - " + passage;
 
         continue;
       }
@@ -157,12 +158,12 @@ function copyInnerHTML(e) {
 }
 
 function listen(id) {
-  var msg = document.getElementById(id).value;
+  var msg = document.getElementById(id).value ?? document.getElementById(id).innerText;
   msg = msg.replaceAll("*","");
   msg = msg.replaceAll(">","");
-  msg = msg.replaceAll(" - ",", ");
+  msg = msg.replaceAll(" - ",". ");
   msg = new SpeechSynthesisUtterance(msg);
   var voicesList = speechSynthesis.getVoices();
-  msg.voice = voicesList.find((voice) => voice.lang === 'en-us');
+  msg.voice = voicesList.find((voice) => voice.lang === 'en-uk');
   speechSynthesis.speak(msg);
 }

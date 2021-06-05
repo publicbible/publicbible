@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Read</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="assets/bootstrap.min.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+<script src="functions.js"></script>
+<script src="passages.js"></script>
+
+
+<body ng-app="passagesApp" ng-controller="biblePassagesCtrl">
+
+<header class="container mb-3 border-bottom border-secondary">
+  <div class="clearfix">
+    <h1 class="float-start my-2">Public Bible</h1>
+    <a href="index.html"><span class="float-end">Home</span></a>
+  </div>
+</header>
+  
+  <div class="container">
+
+    <div class="row">
+      <div class="col-12 mb-1">
+        <form class="">
+          <div class="mb-3">
+            <input type="text" class="form-control rounded-0 p-2 fs-4" id="search-field" aria-describedby="search-Help" placeholder="E.g. money">
+            <div id="search-Help" class="form-text">Tag search</div>
+          </div>
+          
+        </form>
+      </div>
+      <div class="col-12">
+
+        <div class="accordion accordion-flush" id="passage-selector">
+          
+          <div class="accordion-item" ng-repeat="book in books">
+            <h2 class="accordion-header" id="flush-heading-{{book.id}}">
+              <button class="accordion-button collapsed p-2" type="button" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapse-{{book.id}}" aria-expanded="true" aria-controls="flush-collapse-{{book.id}}">
+                {{book.name}}
+              </button>
+            </h2>
+            <div id="flush-collapse-{{book.id}}" class="accordion-collapse collapse" aria-labelledby="flush-heading-{{book.id}}" data-bs-parent="#passage-selector">
+              <div class="accordion-body">
+
+                <div class="passage-list" ng-repeat="p in book.passages">
+                  <a href="index.html?book={{book.id}}&chapter={{p.sc}}&v_start={{p.sv}}&v_end={{p.ev}}">{{p.title}}</a>
+                </div>
+  
+              </div>
+            </div>
+          </div>
+  
+        </div>
+  
+  
+      </div>
+    </div>
+  
+  </div>
+  
+
+
+
+
+
+
+
+
+</div>
+
+<script src="assets/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

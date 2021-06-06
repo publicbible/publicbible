@@ -1,5 +1,51 @@
 
 var app = angular.module('passagesApp', []);
+
+app.filter("filterall",function($filter) {
+  return function(arr,t){
+      (t?t.split(/\s+/):[]).forEach(function(v){ arr = $filter('filter')(arr,v); });
+      return arr;
+  };
+});
+
+app.filter("tagFilter", function ($filter) {
+  
+  return function(inputArray = "", searchText = "") {
+    var searchTerms = (searchText).toLowerCase().split(/\s+/);
+    var result = inputArray;
+    searchTerms.forEach(function(searchTerm) {
+        result = $filter('filter')(result, searchTerm);
+    });
+
+    return result;
+  };  
+
+  // return function(inputArray = "", searchText = ""){
+  //   var wordArray = searchText ? searchText.toLowerCase().split(/\s+/) : [];
+  //   var wordCount = wordArray.length;
+  //   for(var i=0;i<wordCount;i++){
+  //       inputArray = $filter('filter')(inputArray, wordArray[i]);
+  //   }
+  //   console.log(inputArray);
+  //   return inputArray;
+  // }
+  
+  // return function (input = "", searchText = "", AND_OR = "AND") {
+  //   var returnArray = [],
+  //       splitext = searchText.toLowerCase().split(/\s+/),
+  //       regexp_and = "(?=.*" + splitext.join(")(?=.*") + ")",
+  //       regexp_or = searchText.toLowerCase().replace(/\s+/g, "|"),
+  //       re = new RegExp((AND_OR == "AND") ? regexp_and : regexp_or, "i");
+  //   for (var x = 0; x < input.length; x++) { 
+  //     
+  //     if (re.test(input[x])) returnArray.push(input[x]);
+  //   }     
+  //   return returnArray;
+  // } 
+
+});
+
+
 app.controller('biblePassagesCtrl', function($scope, $http) {
     
 

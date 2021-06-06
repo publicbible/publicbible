@@ -73,3 +73,32 @@ function getHTTP(url) {
 function goBack() {
   window.history.back();
 }
+
+
+expandAll('passage-selector');
+
+function collapseAll(id) {
+  parent = document.getElementById(id);
+  elements = Object.values(parent.getElementsByClassName("accordion-collapse"));
+  elements.forEach( function(element) {
+    element.className = element.className.replaceAll("show","");
+  });
+  buttons = Object.values(parent.getElementsByClassName("accordion-button"));
+  buttons.forEach( function(button) {
+    button.className = button.className+" collapsed ";
+  });
+
+}
+
+function expandAll(id) {
+  parent = document.getElementById(id);
+  elements = Object.values(parent.getElementsByClassName("accordion-collapse"));
+  elements.forEach( function(element) {
+    element.className = element.className+" show";
+  });
+  buttons = Object.values(parent.getElementsByClassName("accordion-button"));
+  buttons.forEach( function(button) {
+    button.className = button.className.replaceAll("collapsed", "");
+  });
+
+}

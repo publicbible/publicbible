@@ -117,7 +117,31 @@ a {
   margin-bottom: 0.25em;
 }
 
+.passage-list a {
+  display: contents;
+  word-wrap: break-word;
+}
+
 body, .bg-black{
   background: black;
   color: #aaa;
+}
+
+
+.accordion-button::after {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: auto;
+  content: "+";
+  background-image: unset;
+  background-repeat: no-repeat;
+  background-size: 1.25rem;
+  transition: transform .2s ease-in-out;
+}
+
+.accordion-button:not(.collapsed)::after {
+  background-image: unset;
+  transform: unset;
+  content: "-";
 }

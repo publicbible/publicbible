@@ -17,7 +17,7 @@
   <div class="container">
 
     <div class="row">
-      <div class="col-12 mb-1">
+      <div class="col-12">
         <form class="">
           <div class="mb-3">
             <input ng-model="tagSearch" type="text" class="form-control rounded-0 p-2 fs-4" id="search-field" aria-describedby="search-Help" placeholder="Search">
@@ -27,23 +27,25 @@
       </div>
       <div class="col-12">
 
+        
+        <span class="btn-sm rounded-0 border float-end px-2 ml-2" onclick="collapseAll('passage-selector')">- All</span>
+        <span class="btn-sm rounded-0 border float-end px-2 ml-2" onclick="expandAll('passage-selector')">+ All</span>
+
         <div class="accordion accordion-flush" id="passage-selector">
           
-          <div class="accordion-item bg-black text-light" ng-repeat="book in bookNames | filter:tagSearch">
+          <div class="accordion-item bg-black text-light" ng-repeat="book in bookNames">
             <h2 class="accordion-header" id="flush-heading-{{book.id}}">
-              <button class="accordion-button collapsed p-2 bg-dark text-light" type="button" data-bs-toggle="collapse"
+              <button class="accordion-button p-2 bg-dark text-light" type="button" data-bs-toggle="collapse"
                 data-bs-target="#flush-collapse-{{book.id}}" aria-expanded="true" aria-controls="flush-collapse-{{book.id}}">
                 {{book.name}}
               </button>
             </h2>
-            <div id="flush-collapse-{{book.id}}" class="accordion-collapse collapse" aria-labelledby="flush-heading-{{book.id}}" data-bs-parent2="#passage-selector">
-              <div class="accordion-body py-1">
+            <div id="flush-collapse-{{book.id}}" class="accordion-collapse collapse show" aria-labelledby="flush-heading-{{book.id}}" data-bs-parent2="#passage-selector">
+              <div class="passage-list accordion-body py-1">
 
-                <div class="passage-list" ng-repeat="p in book.passages | filter:tagSearch">
-                  <a href="read.html?book={{book.id}}&chapter={{p.sc}}&v_start={{p.sv}}&v_end={{p.ev}}">
-                    {{p.sc}}:{{p.sv}} - {{p.title}}
-                  </a>
-                </div>
+                <a href="read.html?book={{book.id}}&chapter={{p.sc}}&v_start={{p.sv}}&v_end={{p.ev}}" ng-repeat="p in book.passages | filterall: tagSearch">
+                  <small>{{p.title}} &bull; </small>
+                </a>
   
               </div>
             </div>
@@ -68,9 +70,9 @@
 </div>
 
 <script src="assets/angular.min.js"></script>
+<script src="assets/bootstrap.bundle.min.js"></script>
 <script src="functions.js"></script>
 <script src="passages.js"></script>
-<script src="assets/bootstrap.bundle.min.js"></script>
 
 </body>
 

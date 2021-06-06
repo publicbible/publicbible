@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Bible Reader | Verse Finder</title>
+  <link href='manifest.json' rel='manifest'>
+  <link href="assets/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/icon.png">
+  <link rel="icon" type="image/png" sizes="any" href="images/icon.png">
+</head>
+
+<body>
+
+  <header class="mb-3 " ng-include="'header.html'">
+
+
+    <!-- <div class="clearfix">
+      <h1 class="float-start my-2">Public Bible</h1>
+      <a href="index.html"><span class="float-end mx-2"> Passages </span></a> 
+    </div> -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          
+          <img src="images/icon.png" style="height: 2em;" alt="">
+
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="verse.html">Verse Search</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="verse.html">Verse Finder</a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- <a href="passages.html"><h3 class="right">Passages</h3></a> -->
+
+
+  </header>
+
+  <main class="container" id="passage-selector">
+    <div class="">
+      <form class="">
+        <input name="search" id="search-field" type="text" placeholder="Search" class="p-2 col-12">
+      </form>
+    </div>
+    <div class="" id="display-search-results">
+      <div class="clearfix search-header my-3">
+        <h3 class="float-start">Results</h3>
+        <span class="btn-sm btn-warning float-end" onclick="w3.hide('#display-search-results')">Close</span>
+      </div>
+      <a class="" w3-repeat="searchResults" href="?book={{book}}&chapter={{chapter}}&v_start={{verse}}">
+        <span class="text-secondary border border-dark mb-3 d-block p-2" id="{{passage}}">
+          <b>{{book}} {{chapter}}:{{verse}}</b> - {{text}}
+        </span>
+      </a>
+    </div>
+    <div class="" id="display-passage">
+      <!-- <textarea class="" rows="10" id="display-quote-textarea">{{passageTextarea}}</textarea> -->
+      <div id="display-quote" class="bg-dark my-3 p-3">{{passage}}</div>
+      <div class="clearfix">
+        <div class="float-start">
+          <!-- <span onclick="copyText('display-quote-textarea')" class="btn btn-primary">Copy text</span> -->
+          <span onclick="listen('display-quote')" class="btn btn-primary">Listen</span>
+        </div>
+        <div class="float-end">
+          <a href="?book={{book}}&chapter={{chapter}}&v_start={{v_prev}}" class="btn btn-primary">&lt;</a>
+          <a href="?book={{book}}&chapter={{chapter}}&v_start={{v_prev}}&v_end={{v_end}}" class="btn btn-primary">&lt;+</a>
+          <!-- <a href="?book={{book}}&chapter={{chapter}}&v_start={{v_prev}}&v_end={{v_end}}" class="btn btn-primary">-&lt;</a>
+          <a href="?book={{book}}&chapter={{chapter}}&v_start={{v_start}}&v_end={{v_next}}" class="btn btn-primary">&gt;-</a> -->
+          <a href="?book={{book}}&chapter={{chapter}}&v_start={{v_start}}&v_end={{v_next}}" class="btn btn-primary">+&gt;</a>
+          <a href="?book={{book}}&chapter={{chapter}}&v_start={{v_next}}" class="btn btn-primary">&gt;</a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <form>
+      <div class="full d-block">
+        <h3>Verse Finder</h3>
+        <small>Select book, and enter the chapter and verse(s) at the bottom.</small>
+        <hr>
+        <div id="book-selector" class="row">
+          <div class="col s6">
+            <div w3-repeat="ot" class="book-name mb-1">
+              <input class="" name="book" type="radio" id="{{name}}" value="{{name}}"> <label for="{{name}}"
+                class="">{{name}}</label>
+            </div>
+          </div>
+          <div class="col s6">
+            <div w3-repeat="nt" class="book-name mb-1">
+              <input class="" name="book" type="radio" id="{{name}}" value="{{name}}"> <label for="{{name}}"
+                class="">{{name}}</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="fixed-footer d-block">
+          <div class="footer-inputs ">
+            Ch: <input type="number" style="width: 60px" class="p-1" required name="chapter"> 
+            Vs: <input class="p-1" type="number" style="width: 60px" required name="v_start"> 
+            <input class="p-1" style="width: 60px" type="number" name="v_end"> 
+            <input class="btn-sm btn-secondary" type="submit">
+          </div>
+        </div>
+    </form>
+
+  </div>
+
+<script src="assets/angular.min.js"></script>
+<script src="assets/w3.js"></script>
+<script src="functions.js"></script>
+<script src="script.js"></script>
+<script src="assets/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -44,10 +44,7 @@ function copyInnerHTML(e) {
 }
 
 function listen(id) {
-  var msg = document.getElementById(id).value;
-  msg = msg.replaceAll("*", "");
-  msg = msg.replaceAll(">", "");
-  msg = msg.replaceAll(" - ", ", ");
+  var msg = document.getElementById(id).innerText;
   msg = new SpeechSynthesisUtterance(msg);
   var voicesList = speechSynthesis.getVoices();
   msg.voice = voicesList.find((voice) => voice.lang === 'en-us');
@@ -72,3 +69,7 @@ function getHTTP(url) {
   })
   .catch(e => console.log("Booo"));
 };
+
+function goBack() {
+  window.history.back();
+}

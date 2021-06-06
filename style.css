@@ -79,7 +79,8 @@ input,
   position: relative;
 } */
 
-a{
+a {
+  color: #abc;
   text-decoration: none;
 }
 
@@ -116,7 +117,7 @@ a{
   margin-bottom: 0.25em;
 }
 
-body{
+body, .bg-black{
   background: black;
   color: #aaa;
 }

@@ -20,7 +20,7 @@
       <div class="col-12">
         <form class="">
           <div class="mb-3">
-            <input ng-model="tagSearch" type="text" class="form-control rounded-0 p-2 fs-4" id="search-field" aria-describedby="search-Help" placeholder="Search">
+            <input ng-model="tagSearch" type="text" class="form-control rounded-0 p-2 fs-4" id="search-field" aria-describedby="search-Help" placeholder="Search" onfocus="expandAll('passage-selector');">
             <div id="search-Help" class="form-text">Enter a word to find passages about it</div>
           </div>
         </form>
@@ -33,7 +33,7 @@
 
         <div class="accordion accordion-flush" id="passage-selector">
           
-          <div class="accordion-item bg-black text-light" ng-repeat="book in bookNames">
+          <div class="accordion-item bg-black text-light" ng-repeat="book in bookNames | filterall: tagSearch">
             <h2 class="accordion-header" id="flush-heading-{{book.id}}">
               <button class="accordion-button p-2 bg-dark text-light" type="button" data-bs-toggle="collapse"
                 data-bs-target="#flush-collapse-{{book.id}}" aria-expanded="true" aria-controls="flush-collapse-{{book.id}}">
@@ -43,7 +43,7 @@
             <div id="flush-collapse-{{book.id}}" class="accordion-collapse collapse show" aria-labelledby="flush-heading-{{book.id}}" data-bs-parent2="#passage-selector">
               <div class="passage-list accordion-body py-1">
 
-                <a href="read.html?book={{book.id}}&chapter={{p.sc}}&v_start={{p.sv}}&v_end={{p.ev}}" ng-repeat="p in book.passages | filterall: tagSearch">
+                <a href="read.html?book={{book.id}}&sc={{p.sc}}&sv={{p.sv}}&ec={{p.ec}}&ev={{p.ev}}" ng-repeat="p in book.passages | filterall: tagSearch">
                   <small>{{p.title}} &bull; </small>
                 </a>
   

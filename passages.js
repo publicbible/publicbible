@@ -2,10 +2,14 @@
 var app = angular.module('passagesApp', []);
 
 app.filter("filterall",function($filter) {
-  return function(arr,t){
-      (t?t.split(/\s+/):[]).forEach(function(v){ arr = $filter('filter')(arr,v); });
-      return arr;
+
+  return function(arr,t){ 
+    (t?t.split(/\s+/):[]).forEach(function(v){ 
+      arr = $filter('filter')(arr,v); 
+    });
+    return arr;
   };
+
 });
 
 app.filter("tagFilter", function ($filter) {
@@ -26,7 +30,7 @@ app.filter("tagFilter", function ($filter) {
   //   for(var i=0;i<wordCount;i++){
   //       inputArray = $filter('filter')(inputArray, wordArray[i]);
   //   }
-  //   console.log(inputArray);
+  //   // disp(inputArray);
   //   return inputArray;
   // }
   
@@ -53,7 +57,7 @@ $http.get("data/biblePassagesSearch.json").then(function (response) {
   $scope.bookNames = Object.values(response.data.books);
   for(i = 0; i < 66; i++) {
     $scope.bookNames[i].passages = Object.values($scope.bookNames[i].passages);
-    // console.log($scope.books[i].passages);
+    // // disp($scope.books[i].passages);
   }
 });
 
@@ -61,47 +65,93 @@ $http.get("bible.json").then(function (response) {
   $scope.books = Object.values(response.data.books);
   books = $scope.books;
 
-  var selected = getUrlVars();
+  var url = getUrlVars();
 
   var toEnd = false;
 
-  if (selected.book) { //if passage submitted
+  if (url.book) { //if passage submitted
 
-    selected.book = decodeURI(selected.book.replace("+", " "));
-    // disp(selected.book);
-    if(!isNaN(selected.book)) selected.book =  books[selected.book-1].name;
+    url.book = decodeURI(url.book.replace("+", " "));
+    // // disp(url.book);
+    if(!isNaN(url.book)) url.book =  books[url.book-1].name;
     var passage = indicator = "";
 
     for (b = 0; b < 66; b++) {
-      if (selected.book == books[b].name) {
+      if (url.book == books[b].name) {
 
-        indicator = selected.book + " " + selected.chapter + ":" + selected.v_start;
+        indicator = url.book + " " + url.sc + ":" + url.sv;
 
-        if (!selected.v_end) {
-          selected.v_end = selected.v_start;
-        } else if (selected.v_end.toLowerCase() == "end" || selected.v_end == 999) {
-          selected.v_end = 999;
+        if (!url.ev) {
+          url.ev = url.sv;
+        } else if (url.ev.toLowerCase() == "end" || url.ev == 999) {
+          url.ev = 999;
           toEnd = true;
         } else {
-          indicator += "-" + selected.v_end
+          if (url.ec && url.ec != url.sc) {
+            indicator += "-" + url.ec + ":" + url.ev
+          }
+          else indicator += "-" + url.ev
         }
+        
+        for(c = Number(url.sc); c <= Number(url.ec); c++) {
+          
+          if(c == Number(url.sc)) {
+            
+            for (v = Number(url.sv); v <= 150; v++) {
+              if (books[b].chapters[c].verses[v]) {
+                passage += books[b].chapters[c].verses[v] + " ";
+                // disp("bgn")
+                // disp(url.ev)
+                // disp(c);
+                // disp(v);
+              } else {
+                // url.ev = v - 1;
+                if (toEnd) indicator += "-" + url.ev
+                continue;
+              }
+            }
 
-        for (v = Number(selected.v_start); v <= Number(selected.v_end); v++) {
-          if (books[b].chapters[selected.chapter].verses[v]) {
-            passage += books[b].chapters[selected.chapter].verses[v] + " ";
+          } else if (c == Number(url.ec)){
+            for (v = 1; v <= Number(url.ev); v++) {
+              if (books[b].chapters[c].verses[v]) {
+                passage += books[b].chapters[c].verses[v] + " ";
+                // disp("end", url.ev, c, v);
+              } else {
+                // url.ev = v - 1;
+                if (toEnd) indicator += "-" + url.ev
+                continue;
+              }
+            }
           } else {
-            selected.v_end = v - 1;
-            if (toEnd) indicator += "-" + selected.v_end
-            continue;
+            for (v = 1; v <= 150; v++) {
+              if (books[b].chapters[c].verses[v]) {
+                passage += books[b].chapters[c].verses[v] + " ";
+                // disp("mid", url.ev, c, v);
+              } else {
+                // url.ev = v - 1;
+                if (toEnd) indicator += "-" + url.ev
+                continue;
+              }
+            }
           }
         }
 
-        $scope.book = selected.book;
-        $scope.chapter = selected.chapter;
-        $scope.v_prev = selected.v_start == 1 ? selected.v_start : selected.v_start - 1;
-        $scope.v_start = selected.v_start;
-        $scope.v_end = selected.v_end;
-        $scope.v_next = parseInt(selected.v_end) + 1;
+        // for (v = Number(url.sv); v <= Number(url.ev); v++) {
+        //   if (books[b].chapters[url.sc].verses[v]) {
+        //     passage += books[b].chapters[url.sc].verses[v] + " ";
+        //   } else {
+        //     url.ev = v - 1;
+        //     if (toEnd) indicator += "-" + url.ev
+        //     continue;
+        //   }
+        // }
+
+        $scope.book = url.book;
+        $scope.chapter = url.sc;
+        $scope.v_prev = url.sv == 1 ? url.sv : url.sv - 1;
+        $scope.sv = url.sv;
+        $scope.ev = url.ev;
+        $scope.v_next = parseInt(url.ev) + 1;
         $scope.passageTextarea = ">**" + indicator + "** - " + passage;
         $scope.indicator = indicator;
         $scope.passage = passage;
@@ -109,8 +159,6 @@ $http.get("bible.json").then(function (response) {
         continue;
       }
     }
-
-    disp(passage);
   }
 
 });

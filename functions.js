@@ -74,8 +74,8 @@ function goBack() {
   window.history.back();
 }
 
-
-expandAll('passage-selector');
+collapseAll('passage-selector');
+document.getElementById("search-field").focus();
 
 function collapseAll(id) {
   parent = document.getElementById(id);

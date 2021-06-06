@@ -41,7 +41,7 @@
               </button>
             </h2>
             <div id="flush-collapse-{{book.id}}" class="accordion-collapse collapse show" aria-labelledby="flush-heading-{{book.id}}" data-bs-parent2="#passage-selector">
-              <div class="passage-list accordion-body py-1">
+              <div class="passage-list accordion-body p-0 mb-2">
 
                 <a href="read.html?book={{book.id}}&sc={{p.sc}}&sv={{p.sv}}&ec={{p.ec}}&ev={{p.ev}}" ng-repeat="p in book.passages | filterall: tagSearch">
                   <small>{{p.title}} &bull; </small>

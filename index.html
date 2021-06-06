@@ -44,7 +44,8 @@
               <div class="passage-list accordion-body p-0 mb-2">
 
                 <a href="read.html?book={{book.id}}&sc={{p.sc}}&sv={{p.sv}}&ec={{p.ec}}&ev={{p.ev}}" ng-repeat="p in book.passages | filterall: tagSearch">
-                  <small>{{p.title}} &bull; </small>
+                  <small ng-if="!$last">{{p.title}} &bull; </small>
+                  <small ng-if="$last">{{p.title}}</small>
                 </a>
   
               </div>

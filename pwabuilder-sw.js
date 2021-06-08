@@ -2,14 +2,18 @@ self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open('/').then((cache) => cache.addAll([
       'index.html',
+      'header.html',
       'passages.html',
+      'read.html',
+      'verse.html',
       'images/icon.png',
       'w3.css',
       'style.css',
       'w3js',
       'script.js',
+      'functions.js',
       'bible.json',
-      'data/biblePassages.json',
+      'data/biblePassagesSearch.json',
     ])),
   );
 });

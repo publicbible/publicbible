@@ -145,3 +145,14 @@ body, .bg-black{
   transform: unset;
   content: "-";
 }
+
+.question {
+  width: 70px;
+  outline: none;
+  border-width: 0px 0px 1px 0px;
+}
+.success {
+  background: rgb(121, 226, 121) !important;
+  color: blue !important;;
+  font-weight: bold !important;;
+}

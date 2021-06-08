@@ -22,6 +22,7 @@
     <div class="mb-5 pb-5" id="display-passage">
       <h1>{{indicator}}</h1>
       <p id="display-quote" class="">{{passage}}</p>
+      <p id="display-answers" class="fw-bolder fst-italic"></p>
     </div>
 
     <div class="fixed-footer d-block container">
@@ -29,17 +30,18 @@
         <div class="float-start">
           <!-- <span onclick="copyText('display-quote-textarea')" class="btn btn-primary">Copy text</span> -->
           <button type="button" onclick="listen('display-passage')" class="btn btn-primary">Listen</button>
-          <button  class="btn btn-primary" onclick="goBack()">Go Back</button>
+          <button class="btn btn-primary" onclick="goBack()">Go Back</button>
+          <button id="quiz-me-btn" class="btn btn-primary" onclick="quizMe('display-quote')">Quiz Me</button>
 
-          
         </div>
-        <div class="float-end d-none">
-          <a href="?book={{book}}&chapter={{chapter}}&v_start={{v_prev}}" class="btn btn-primary">&lt;</a>
+        <div class="float-end">
+          <a id="reload-btn float-end" class="btn btn-primary" onclick="window.location.reload(true);">Reload</a>
+          <!-- <a href="?book={{book}}&chapter={{chapter}}&v_start={{v_prev}}" class="btn btn-primary">&lt;</a>
           <a href="?book={{book}}&chapter={{chapter}}&v_start={{v_prev}}&v_end={{v_end}}" class="btn btn-primary">&lt;+</a>
           <!-- <a href="?book={{book}}&chapter={{chapter}}&v_start={{v_prev}}&v_end={{v_end}}" class="btn btn-primary">-&lt;</a>
           <a href="?book={{book}}&chapter={{chapter}}&v_start={{v_start}}&v_end={{v_next}}" class="btn btn-primary">&gt;-</a> -->
-          <a href="?book={{book}}&chapter={{chapter}}&v_start={{v_start}}&v_end={{v_next}}" class="btn btn-primary">+&gt;</a>
-          <a href="?book={{book}}&chapter={{chapter}}&v_start={{v_next}}" class="btn btn-primary">&gt;</a>
+          <!-- <a href="?book={{book}}&chapter={{chapter}}&v_start={{v_start}}&v_end={{v_next}}" class="btn btn-primary">+&gt;</a>
+          <a href="?book={{book}}&chapter={{chapter}}&v_start={{v_next}}" class="btn btn-primary">&gt;</a> -->
         </div>
       </div>
     </div>

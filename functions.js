@@ -1,4 +1,4 @@
-function disp(a){
+function disp(a) {
   // console.trace;
   console.log(a)
 }
@@ -62,12 +62,12 @@ function idToVerse(id) {
 
 function getHTTP(url) {
   fetch(url)
-  .then(r => r.json())
-  .then(data = function(data){
-    console.log(data);
-    return data;
-  })
-  .catch(e => console.log("Booo"));
+    .then(r => r.json())
+    .then(data = function (data) {
+      console.log(data);
+      return data;
+    })
+    .catch(e => console.log("Booo"));
 };
 
 function goBack() {
@@ -80,12 +80,12 @@ document.getElementById("search-field").focus();
 function collapseAll(id) {
   parent = document.getElementById(id);
   elements = Object.values(parent.getElementsByClassName("accordion-collapse"));
-  elements.forEach( function(element) {
-    element.className = element.className.replaceAll("show","");
+  elements.forEach(function (element) {
+    element.className = element.className.replaceAll("show", "");
   });
   buttons = Object.values(parent.getElementsByClassName("accordion-button"));
-  buttons.forEach( function(button) {
-    button.className = button.className+" collapsed ";
+  buttons.forEach(function (button) {
+    button.className = button.className + " collapsed ";
   });
 
 }
@@ -93,12 +93,103 @@ function collapseAll(id) {
 function expandAll(id) {
   parent = document.getElementById(id);
   elements = Object.values(parent.getElementsByClassName("accordion-collapse"));
-  elements.forEach( function(element) {
-    element.className = element.className+" show";
+  elements.forEach(function (element) {
+    element.className = element.className + " show";
   });
   buttons = Object.values(parent.getElementsByClassName("accordion-button"));
-  buttons.forEach( function(button) {
+  buttons.forEach(function (button) {
     button.className = button.className.replaceAll("collapsed", "");
   });
 
+}
+
+
+
+
+function quizMe(id) {
+
+  var quizMeBtn = document.getElementById("quiz-me-btn");
+  quizMeBtn.classList.add("disabled");
+  quizMeBtn.innerText = "Answers at the bottom";
+  
+
+
+  Array.prototype.remove = function () {
+    var what, a = arguments,
+      L = a.length,
+      ax;
+    while (L && this.length) {
+      what = a[--L];
+      while ((ax = this.indexOf(what)) !== -1) {
+        this.splice(ax, 1);
+      }
+    }
+    return this;
+  };
+  
+  String.prototype.replaceNth = function (f, r, n) {
+  
+    text = this;
+  
+    var t = 0;
+    text = text.replace(f, function (match) {
+      t++;
+      return (t - 1 === n) ? r : match;
+    });
+  
+    return text;
+  };
+  
+  String.prototype.quiz = function (w) {
+    var html = this;
+    for (var i = 0; i < w.length; i++) {
+      var term = new RegExp(w[i], 'gi');
+      var occ = Math.floor(Math.random() * (html.match(term) || []).length);
+      input = '<input class="border-bottom bg-transparent text-light mx-1 px-1 py-0 question" id="q' + i + '" onkeyup="compare(\'q' + i + '\', \'' + w[i] + '\')">';
+      html = html.replaceNth(term, input, occ);
+    }
+    return html;
+  }
+  
+  Array.prototype.random = function (n) {
+    var arr = [];
+    for (var i = 0; i < n; i++) {
+      var rand = this[Math.floor(Math.random() * this.length)];
+      arr.push(rand);
+    }
+    return arr;
+  }
+
+  const words = ["with ", " what ", " how ", " why ", " where ", " when ", " who ", " which ", " they ", " a ", " the ", " to ", " and ", " an ", " for ", " off ", " of ", " if ", " this ", " is ", " was ", " are ", " \"", " as ", " in ", " not ", " i ", " it ", " they ", ":", "\\."];
+
+  var strMessage1 = document.getElementById(id);
+
+  var text = " " + strMessage1.innerText;
+  text = text.replaceAll(new RegExp(words.join('|'), 'gmi'), ' ');
+  text = text.replace(/(\r\n|\n|\r)/gim, " ");
+  text = text.replaceAll("  ", " ");
+  text = text.replaceAll("  ", " ");
+  text = text.replaceAll("  ", " ");
+  text = text.split(/[\s,]+/);
+  text = text.remove("");
+  console.log(text);
+  blanks = text.random(Math.floor(Math.random() * text.length/40) + 2);
+
+  var html = strMessage1.innerHTML;
+  html = html.quiz(blanks);
+  console.log(blanks);
+  strMessage1.innerHTML = html;
+  document.getElementById("display-answers").innerText = "Answers: "+blanks.join(", ");
+}
+
+
+
+function compare(id, correct) {
+  var field = document.getElementById(id);
+  var answer = field.value;
+  if (answer.toLowerCase() == correct.toLowerCase()) {
+    console.log("Nice");
+    field.classList.add("success");
+    //TODO: focus to next field
+  }
 }

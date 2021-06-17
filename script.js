@@ -209,7 +209,10 @@ function toHTML(inId, outId) {
 
 function toMD(inId, outId) {
   var input = document.getElementById(inId);
+  var inputHeight = input.offsetHeight;
   var output = document.getElementById(outId);
+  output.style.height = inputHeight+"px";
+  console.log(inputHeight);
   var turndownService = new window.TurndownService({
     "headingStyle": "atx",
     "hr": "- - -",

@@ -139,13 +139,108 @@ function getUrlVars() {
   return vars;
 }
 
-function copyText(id) {
-  var txt = document.getElementById(id);
+function listen(id) {
+  var msg = document.getElementById(id).value ?? document.getElementById(id).innerText;
+  msg = msg.replaceAll("*","");
+  msg = msg.replaceAll(">","");
+  msg = msg.replaceAll(" - ",". ");
+  msg = new SpeechSynthesisUtterance(msg);
+  var voicesList = speechSynthesis.getVoices();
+  msg.voice = voicesList.find((voice) => voice.lang === 'en-uk');
+  speechSynthesis.speak(msg);
+}
 
-  txt.select();
-  txt.setSelectionRange(0, 99999); /* For mobile devices */
 
+
+function summ(id) {
+  var text = document.getElementById(id).innerText;
+  text = text.replaceAll("\n\n", "\n");
+  text = text.replaceAll("\n\n", "\n");
+  text = text.replaceAll("\n\n", "\n");
+  text = text.replaceAll("\n", "||");
+  text = text.replaceAll(". ", ".||");
+  text = text.replaceAll(".\n", ".||\n");
+  text = text.replaceAll("\n", "");
+
+  var sentences = text.split("||");
+  sentences = getLongMembers(sentences, 5);
+
+  disable('summarize-button');
+  var copyBtn = document.getElementById('summarize-button');
+  copyBtn.innerText = "Summ'd!"
+  document.getElementById(id).innerText = sentences.join("\n\n");;
+  sentences = null;
+}
+
+function getRandomMembers(arr, n) {
+  // console.log(arr, n);
+  const shuffled = arr.sort(() => 0.5 - Math.random());
+  let result = shuffled.slice(0, n);
+  return result;
+}
+
+function getLongMembers(arr, n) {
+  // console.log(arr, n);
+  const ordered = arr.sort((a, b) => b.length - a.length);
+  let result = ordered.slice(0, n);
+  return result;
+}
+
+
+hide('md');
+hide('copy-button');
+
+function reload() {
+  location.reload();
+}
+
+function toHTML(inId, outId) {
+  var input = document.getElementById(inId);
+  var output = document.getElementById(outId);
+  var html = input.innerHTML;
+  input.innerText = html;
+  output.value = html;
+  // hide('tohtml-button');
+  hide('tomd-button');
+  show('copy-button');
+  hide(inId);
+  show(outId);
+}
+
+function toMD(inId, outId) {
+  var input = document.getElementById(inId);
+  var output = document.getElementById(outId);
+  var turndownService = new window.TurndownService({
+    "headingStyle": "atx",
+    "hr": "- - -",
+    "bulletListMarker": "-",
+    "codeBlockStyle": "indented",
+    "fence": "```",
+    "emDelimiter": "*",
+    "strongDelimiter": "**",
+    "linkStyle": "inlined",
+    "linkReferenceStyle": "full"
+  });
+
+  var tables = turndownPluginGfm.tables
+  turndownService.use([tables])
+  markdown = turndownService.turndown(input.innerHTML)
+  input.innerText = markdown;
+  output.value = markdown;
+  // hide('tohtml-button');
+  hide('tomd-button');
+  show('copy-button');
+  hide(inId);
+  show(outId);
+}
+
+function copyContent(id) {
+  let elem = document.getElementById(id);
+  elem.select();
   document.execCommand("copy");
+  disable('copy-button');
+  var copyBtn = document.getElementById('copy-button');
+  copyBtn.innerText = "Copied!"
 }
 
 function copyInnerHTML(e) {
@@ -158,13 +253,15 @@ function copyInnerHTML(e) {
   document.execCommand('copy');
 }
 
-function listen(id) {
-  var msg = document.getElementById(id).value ?? document.getElementById(id).innerText;
-  msg = msg.replaceAll("*","");
-  msg = msg.replaceAll(">","");
-  msg = msg.replaceAll(" - ",". ");
-  msg = new SpeechSynthesisUtterance(msg);
-  var voicesList = speechSynthesis.getVoices();
-  msg.voice = voicesList.find((voice) => voice.lang === 'en-uk');
-  speechSynthesis.speak(msg);
+function show(id) {
+  document.getElementById(id).style.display = '';
+}
+function hide(id) {
+  document.getElementById(id).style.display = 'none';
+}
+function enable(id) {
+  document.getElementById(id).disabled = false;
+}
+function disable(id) {
+  document.getElementById(id).disabled = true;
 }

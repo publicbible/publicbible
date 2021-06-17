@@ -74,7 +74,8 @@ $http.get("bible.json").then(function (response) {
     url.book = decodeURI(url.book.replace("+", " "));
     // // disp(url.book);
     if(!isNaN(url.book)) url.book =  books[url.book-1].name;
-    var passage = indicator = "";
+    var passage = [];
+    var indicator = "";
 
     for (b = 0; b < 66; b++) {
       if (url.book == books[b].name) {
@@ -96,10 +97,9 @@ $http.get("bible.json").then(function (response) {
         for(c = Number(url.sc); c <= Number(url.ec); c++) {
           
           if(c == Number(url.sc)) {
-            
             for (v = Number(url.sv); v <= 150; v++) {
               if (books[b].chapters[c].verses[v]) {
-                passage += books[b].chapters[c].verses[v] + " ";
+                passage.push({"b": b+1, "c": c, "v":v, "text": books[b].chapters[c].verses[v]});
                 // disp("bgn")
                 // disp(url.ev)
                 // disp(c);
@@ -110,11 +110,10 @@ $http.get("bible.json").then(function (response) {
                 continue;
               }
             }
-
           } else if (c == Number(url.ec)){
             for (v = 1; v <= Number(url.ev); v++) {
               if (books[b].chapters[c].verses[v]) {
-                passage += books[b].chapters[c].verses[v] + " ";
+                passage.push({"b": b+1, "c": c, "v":v, "text": books[b].chapters[c].verses[v]});
                 // disp("end", url.ev, c, v);
               } else {
                 // url.ev = v - 1;
@@ -125,7 +124,7 @@ $http.get("bible.json").then(function (response) {
           } else {
             for (v = 1; v <= 150; v++) {
               if (books[b].chapters[c].verses[v]) {
-                passage += books[b].chapters[c].verses[v] + " ";
+                passage.push({"b": b+1, "c": c, "v":v, "text": books[b].chapters[c].verses[v]});
                 // disp("mid", url.ev, c, v);
               } else {
                 // url.ev = v - 1;
@@ -134,6 +133,7 @@ $http.get("bible.json").then(function (response) {
               }
             }
           }
+
         }
 
         // for (v = Number(url.sv); v <= Number(url.ev); v++) {

@@ -21,7 +21,9 @@
     
     <div class="mb-5 pb-5" id="display-passage">
       <h1>{{indicator}}</h1>
-      <p id="display-quote" class="">{{passage}}</p>
+      <p id="display-quote" class="">
+        <a href="verse.html?book={{p.b}}&chapter={{p.c}}&v_start={{p.v}}" ng-repeat="p in passage">{{p.text}} </a> 
+      </p>
       <p id="display-answers" class="fw-bolder fst-italic"></p>
     </div>
 

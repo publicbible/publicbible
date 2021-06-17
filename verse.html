@@ -70,11 +70,13 @@
       </a>
     </div>
     <div class="" id="display-passage">
-      <!-- <textarea class="" rows="10" id="display-quote-textarea">{{passageTextarea}}</textarea> -->
+      <textarea class="bg-dark text-light col-12 my-3 p-3" id="md"></textarea>
       <div id="display-quote" class="bg-dark my-3 p-3">{{passage}}</div>
       <div class="clearfix">
         <div class="float-start">
-          <!-- <span onclick="copyText('display-quote-textarea')" class="btn btn-primary">Copy text</span> -->
+          <span id="tomd-button" class="btn btn-primary" onclick="toMD('display-quote', 'md')">To MD</span>
+          <span id="copy-button" onclick="copyContent('md')" class="btn btn-primary">Copy text</span>
+          <!-- <span id="tohtml-button" class="btn" onclick="toHTML('editable', 'md')">To HTML</span> -->
           <span onclick="listen('display-quote')" class="btn btn-primary">Listen</span>
         </div>
         <div class="float-end">
@@ -121,6 +123,7 @@
   </div>
 
 <script src="assets/angular.min.js"></script>
+<script src="assets/turndown.js"></script>
 <script src="assets/w3.js"></script>
 <script src="functions.js"></script>
 <script src="script.js"></script>

@@ -111,6 +111,15 @@ a {
   background: #111;
 }
 
+.verse-text {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.verse-text sup {
+  opacity: 0.5;
+}
+
 .passage-title {
   padding: 0.5em;
   background: #222;

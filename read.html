@@ -11,6 +11,8 @@
   <link href="style.css" rel="stylesheet">
   <link rel="apple-touch-icon" sizes="180x180" href="images/icon.png">
   <link rel="icon" type="image/png" sizes="any" href="images/icon.png">
+
+  <script src="assets/angular.min.js"></script>
 </head>
 
 <body ng-app="passagesApp" ng-controller="biblePassagesCtrl">
@@ -21,8 +23,9 @@
     
     <div class="mb-5 pb-5" id="display-passage">
       <h1>{{indicator}}</h1>
+      <hr>
       <p id="display-quote" class="">
-        <a href="verse.html?book={{p.b}}&chapter={{p.c}}&v_start={{p.v}}" ng-repeat="p in passage">{{p.text}} </a> 
+        <a class="verse-text" href="verse.html?book={{p.b}}&chapter={{p.c}}&v_start={{p.v}}" ng-repeat="p in passage"><sup>{{p.v}}</sup> {{p.text}} </a> 
       </p>
       <p id="display-answers" class="fw-bolder fst-italic"></p>
     </div>
@@ -49,8 +52,6 @@
     </div>
 
   </div>
-
-  <script src="assets/angular.min.js"></script>
   <script src="functions.js"></script>
   <script src="passages.js"></script>
   <script src="assets/bootstrap.bundle.min.js"></script>

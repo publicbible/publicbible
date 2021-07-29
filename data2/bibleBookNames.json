@@ -1,0 +1,270 @@
+{
+  "1": {
+    "1": {
+      "n": "Genesis",
+      "s": "Gen."
+    },
+    "2": {
+      "n": "Exodus",
+      "s": "Ex."
+    },
+    "3": {
+      "n": "Leviticus",
+      "s": "Lev."
+    },
+    "4": {
+      "n": "Numbers",
+      "s": "Num."
+    },
+    "5": {
+      "n": "Deuteronomy",
+      "s": "Deut."
+    },
+    "6": {
+      "n": "Joshua",
+      "s": "Josh."
+    },
+    "7": {
+      "n": "Judges",
+      "s": "Judg."
+    },
+    "8": {
+      "n": "Ruth",
+      "s": "Ruth"
+    },
+    "9": {
+      "n": "1 Samuel",
+      "s": "1 Sam."
+    },
+    "10": {
+      "n": "2 Samuel",
+      "s": "2 Sam."
+    },
+    "11": {
+      "n": "1 Kings",
+      "s": "1 Kings"
+    },
+    "12": {
+      "n": "2 Kings",
+      "s": "2 Kings"
+    },
+    "13": {
+      "n": "1 Chronicles",
+      "s": "1 Chron."
+    },
+    "14": {
+      "n": "2 Chronicles",
+      "s": "2 Chron."
+    },
+    "15": {
+      "n": "Ezra",
+      "s": "Ezra"
+    },
+    "16": {
+      "n": "Nehemiah",
+      "s": "Neh."
+    },
+    "17": {
+      "n": "Esther",
+      "s": "Est."
+    },
+    "18": {
+      "n": "Job",
+      "s": "Job"
+    },
+    "19": {
+      "n": "Psalms",
+      "s": "Ps."
+    },
+    "20": {
+      "n": "Proverbs",
+      "s": "Prov"
+    },
+    "21": {
+      "n": "Ecclesiastes",
+      "s": "Eccles."
+    },
+    "22": {
+      "n": "Song of Songs",
+      "s": "Song"
+    },
+    "23": {
+      "n": "Isaiah",
+      "s": "Isa."
+    },
+    "24": {
+      "n": "Jeremiah",
+      "s": "Jer."
+    },
+    "25": {
+      "n": "Lamentations",
+      "s": "Lam."
+    },
+    "26": {
+      "n": "Ezekiel",
+      "s": "Ezek."
+    },
+    "27": {
+      "n": "Daniel",
+      "s": "Dan."
+    },
+    "28": {
+      "n": "Hosea",
+      "s": "Hos."
+    },
+    "29": {
+      "n": "Joel",
+      "s": "Joel"
+    },
+    "30": {
+      "n": "Amos",
+      "s": "Amos"
+    },
+    "31": {
+      "n": "Obadiah",
+      "s": "Obad."
+    },
+    "32": {
+      "n": "Jonah",
+      "s": "Jonah"
+    },
+    "33": {
+      "n": "Micah",
+      "s": "Mic."
+    },
+    "34": {
+      "n": "Nahum",
+      "s": "Nah."
+    },
+    "35": {
+      "n": "Habakkuk",
+      "s": "Hab."
+    },
+    "36": {
+      "n": "Zephaniah",
+      "s": "Zeph."
+    },
+    "37": {
+      "n": "Haggai",
+      "s": "Hag."
+    },
+    "38": {
+      "n": "Zechariah",
+      "s": "Zech."
+    },
+    "39": {
+      "n": "Malachi",
+      "s": "Mal."
+    }
+  },
+  "2": {
+    "1": {
+      "n": "Matthew",
+      "s": "Matt."
+    },
+    "2": {
+      "n": "Mark",
+      "s": "Mark"
+    },
+    "3": {
+      "n": "Luke",
+      "s": "Luke"
+    },
+    "4": {
+      "n": "John",
+      "s": "John"
+    },
+    "5": {
+      "n": "Acts",
+      "s": "Acts"
+    },
+    "6": {
+      "n": "Romans",
+      "s": "Rom."
+    },
+    "7": {
+      "n": "1 Corinthians",
+      "s": "1 Cor."
+    },
+    "8": {
+      "n": "2 Corinthians",
+      "s": "2 Cor."
+    },
+    "9": {
+      "n": "Galatians",
+      "s": "Gal."
+    },
+    "10": {
+      "n": "Ephesians",
+      "s": "Eph."
+    },
+    "11": {
+      "n": "Philippians",
+      "s": "Phil."
+    },
+    "12": {
+      "n": "Colossians",
+      "s": "Col."
+    },
+    "13": {
+      "n": "1 Thessalonians",
+      "s": "1 Thess."
+    },
+    "14": {
+      "n": "2 Thessalonians",
+      "s": "2 Thess."
+    },
+    "15": {
+      "n": "1 Timothy",
+      "s": "1 Tim."
+    },
+    "16": {
+      "n": "2 Timothy",
+      "s": "2 Tim."
+    },
+    "17": {
+      "n": "Titus",
+      "s": "Titus"
+    },
+    "18": {
+      "n": "Philemon",
+      "s": "Philem."
+    },
+    "19": {
+      "n": "Hebrews",
+      "s": "Heb."
+    },
+    "20": {
+      "n": "James",
+      "s": "James"
+    },
+    "21": {
+      "n": "1 Peter",
+      "s": "1 Pet."
+    },
+    "22": {
+      "n": "2 Peter",
+      "s": "2 Pet."
+    },
+    "23": {
+      "n": "1 John",
+      "s": "1 John"
+    },
+    "24": {
+      "n": "2 John",
+      "s": "2 John"
+    },
+    "25": {
+      "n": "3 John",
+      "s": "3 John"
+    },
+    "26": {
+      "n": "Jude",
+      "s": "Jude"
+    },
+    "27": {
+      "n": "Revelation",
+      "s": "Rev."
+    }
+  }
+}

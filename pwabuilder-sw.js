@@ -7,12 +7,9 @@ self.addEventListener('install', (e) => {
       'read.html',
       'verse.html',
       'images/icon.png',
-      'w3.css',
       'style.css',
-      'w3js',
       'script.js',
       'functions.js',
-      'bible.json',
       'data/biblePassagesSearch.json',
     ])),
   );

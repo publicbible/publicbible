@@ -47,6 +47,7 @@ function listen(id) {
   var msg = document.getElementById(id).innerText;
   msg = new SpeechSynthesisUtterance(msg);
   var voicesList = speechSynthesis.getVoices();
+  console.log(voicesList);
   msg.voice = voicesList.find((voice) => voice.lang === 'en-us');
   speechSynthesis.speak(msg);
 }

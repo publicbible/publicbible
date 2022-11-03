@@ -72,7 +72,7 @@ $http.get("bible.json").then(function (response) {
   if (url.book) { //if passage submitted
 
     url.book = decodeURI(url.book.replace("+", " "));
-    // // disp(url.book);
+
     if(!isNaN(url.book)) url.book =  books[url.book-1].name;
     var passage = [];
     var indicator = "";
@@ -96,28 +96,22 @@ $http.get("bible.json").then(function (response) {
         
         for(c = Number(url.sc); c <= Number(url.ec); c++) {
           
-          if(c == Number(url.sc)) {
-            for (v = Number(url.sv); v <= 150; v++) {
-              if (books[b].chapters[c].verses[v]) {
-                passage.push({"b": b+1, "c": c, "v":v, "text": books[b].chapters[c].verses[v]});
-                // disp("bgn")
-                // disp(url.ev)
-                // disp(c);
-                // disp(v);
-              } else {
-                // url.ev = v - 1;
-                if (toEnd) indicator += "-" + url.ev
-                continue;
-              }
-            }
-          } else if (c == Number(url.ec)){
+          if (c == Number(url.ec)){
             for (v = 1; v <= Number(url.ev); v++) {
               if (books[b].chapters[c].verses[v]) {
                 passage.push({"b": b+1, "c": c, "v":v, "text": books[b].chapters[c].verses[v]});
-                // disp("end", url.ev, c, v);
               } else {
-                // url.ev = v - 1;
-                if (toEnd) indicator += "-" + url.ev
+                url.ev = v - 1;
+                if (toEnd) indicator += "-" + url.ec + ":" + url.ev
+                continue;
+              }
+            }
+          } else if(c == Number(url.sc)) {
+            for (v = Number(url.sv); v <= 150; v++) {
+              if (books[b].chapters[c].verses[v]) {
+                passage.push({"b": b+1, "c": c, "v":v, "text": books[b].chapters[c].verses[v]});
+              } else {
+                //if (toEnd) indicator += "-" + url.ev
                 continue;
               }
             }
@@ -125,10 +119,8 @@ $http.get("bible.json").then(function (response) {
             for (v = 1; v <= 150; v++) {
               if (books[b].chapters[c].verses[v]) {
                 passage.push({"b": b+1, "c": c, "v":v, "text": books[b].chapters[c].verses[v]});
-                // disp("mid", url.ev, c, v);
               } else {
-                // url.ev = v - 1;
-                if (toEnd) indicator += "-" + url.ev
+                //if (toEnd) indicator += "-" + url.ev
                 continue;
               }
             }
